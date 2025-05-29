@@ -1,8 +1,8 @@
-```js
 **MongoDB Aggregation Framework Assignment**
 
 **Easy**
 
+```js
 use aggregationAssignmentDB
 switched to db aggregationAssignmentDB
 db.createCollection("products")
@@ -34,11 +34,15 @@ db.products.insertMany([
     '9': ObjectId('68383cdb8c42002539abd39d')
   }
 }
-
+```
 **1. List All Products in the "Electronics" Category**
+```js
 db.products.aggregate([
   { $match: { category: "Electronics" } }
 ])
+```
+Output:
+```br
 {
   _id: ObjectId('68383cdb8c42002539abd394'),
   name: 'Laptop Pro',
@@ -124,8 +128,9 @@ db.products.aggregate([
     location: 'USA'
   }
 }
-
+```
 **2. Count Products per Category**
+```js
 db.products.aggregate([
   {
     $group: {
@@ -134,10 +139,13 @@ db.products.aggregate([
     }
   }
 ])
+```
+Output<br>
 ![image](https://github.com/user-attachments/assets/5660a77b-d413-4ded-be05-6d45fe19db29)
 
 
 **3. Product Names and Prices, Sorted by Price (Descending)**
+```js
 db.products.aggregate([
   {
     $project: {
@@ -152,12 +160,14 @@ db.products.aggregate([
     }
   }
 ])
+```
+Output:<br>
 ![image](https://github.com/user-attachments/assets/ef2b7f32-c7c6-4a39-a8f1-a24af2c2e48d)
-
 
 **Medium Difficulty**
 
 **1. Total Quantity of Products by Supplier**
+```js
 db.products.aggregate([
   {
     $group: {
@@ -166,10 +176,13 @@ db.products.aggregate([
     }
   }
 ])
+```
+Output:<br>
 ![image](https://github.com/user-attachments/assets/973420e0-2591-465d-b145-f30c46ab8226)
 
 
 **2. Average Price of Products per Tag**
+```js
 db.products.aggregate([
   { $unwind: "$tags" },
   {
@@ -184,6 +197,9 @@ db.products.aggregate([
     }
   }
 ])
+```
+Output:
+```js
 {
   _id: 'work',
   averagePrice: 1200
@@ -264,8 +280,9 @@ db.products.aggregate([
   _id: 'cotton',
   averagePrice: 20
 }
-
+```
 **3. Products Added in February 2023**
+```js
 db.products.aggregate([
   {
     $match: {
@@ -286,6 +303,7 @@ db.products.aggregate([
     }
   }
 ])
+```
+Output:<br>
 ![image](https://github.com/user-attachments/assets/db427ea5-9916-40c7-9d72-6078914c526d)
 
-```
